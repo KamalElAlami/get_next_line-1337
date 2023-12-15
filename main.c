@@ -1,14 +1,14 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <string.h>
 
-int main(void)
+#include <stdio.h>
+
+
+int main()
 {
-    int bytes_read;
-    int fd;
-    char buffer[1024];
-
-    fd = open("test.txt", O_RDONLY);
-    bytes_read = read(fd, buffer, 11);
-    printf("%s", buffer);
+   printf("%d", count());
+   printf("%d", count());
+   printf("%d", count());
 }
