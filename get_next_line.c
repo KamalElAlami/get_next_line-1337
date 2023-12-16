@@ -12,7 +12,6 @@
 
 #include "get_next_line.h"
 
-
 char * ft_reader(int fd , char *rst)
 {
     int count;
@@ -38,14 +37,42 @@ int new_line_counter(char *str)
     int i;
 
     i = 0;
-    while(*str != "\n")
+    while(str[i] != '\n' || str[i] != '\0')
         i++;
     return (i);
 }
 
-char line_stack(char *rst, char buff)
+char *line_stack(char *rst, char *buff)
 {
-    
+    int i;
+    int j;
+
+    i = 0;
+    j = new_line_counter(rst);
+    buff = malloc(sizeof(char) * j + 1);
+    while (i <= j)
+    {
+        buff[i] == rst[i];
+        i++; 
+    }
+    buff[i] = '\0';
+    return (buff);
+}
+
+char *rst_joiner(char *rst)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (rst[i] != '\n' || rst[i] != '\0')
+        i++;
+    if (rst[i] == '\n')
+        i++;
+    while (rst[i])
+        rst[j++] = rst[i++];
+    return (rst);
 }
 
 char *get_next_line(int fd)
@@ -58,6 +85,8 @@ char *get_next_line(int fd)
         return (NULL);
   
     rst =  ft_reader(fd, rst);
+    buff = line_stack(rst, buff);
+    rst = rst_joiner(rst);
     
 }
 
@@ -66,10 +95,13 @@ char *get_next_line(int fd)
 #include <limits.h>
 int main(void)
 {
-    int fd;
-    fd  = open("ult.txt", O_RDONLY);
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
+    // int fd;
+    // fd  = open("ult.txt", O_RDONLY);
+    // printf("%s\n", get_next_line(fd));
+    // printf("%s\n", get_next_line(fd));
+    // printf("%s\n", get_next_line(fd));
+    // printf("%s\n", get_next_line(fd));
+    char *rss = ft_strdup("kamal\nbobo");
+    rst_joiner(rss);
+    printf("%s", rss);
 }
