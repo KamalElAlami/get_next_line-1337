@@ -6,13 +6,13 @@
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:04:45 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/15 21:36:10 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/17 17:14:14 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	int		len;
 	char	*res;
@@ -43,7 +43,7 @@ char	*ft_strdup(const char *s1)
 	return (res);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {
 	size_t	i;
 	size_t	srclen;
@@ -62,13 +62,15 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (srclen);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*constr;
 	int		sl;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	sl = ft_strlen(s1) + ft_strlen(s2);
 	constr = malloc(sizeof(char) * (sl + 1));
 	if (!constr)
@@ -79,15 +81,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (constr);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchr(char *s, int c)
 {
+	if (!s)
+		return (1);
 	while (*s)
 	{
 		if (*s == (char)c)
-			return ((char *)s);
+			return (0);
 		s++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
+	return (1);
 }
