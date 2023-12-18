@@ -6,7 +6,7 @@
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:04:45 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/17 17:14:14 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:11:43 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 		i++;
 	return (i);
 }
@@ -30,7 +30,7 @@ char	*ft_strdup(char *s1)
 
 	i = 0;
 	len = ft_strlen(s1);
-	res = malloc(sizeof(char) * (len + 1));
+	res = calloc(sizeof(char) * (len + 1), sizeof(char));
 	if (!res)
 		return (NULL);
 	while (*s1)
@@ -72,7 +72,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s2)
 		return (ft_strdup(s1));
 	sl = ft_strlen(s1) + ft_strlen(s2);
-	constr = malloc(sizeof(char) * (sl + 1));
+	constr = calloc(sizeof(char) * (sl + 1), sizeof(char));
 	if (!constr)
 		return (NULL);
 	ft_strlcpy(constr, s1, ft_strlen(s1) + 1);

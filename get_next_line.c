@@ -6,7 +6,7 @@
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:42:22 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/18 10:15:00 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:20:34 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*rst_joiner(char *rst)
 		return (free(rst), NULL);
 	while (rst[i] && rst[i] != '\n')
 		i++;
-	restofline = malloc(sizeof(char) * (ft_strlen(rst) - i) + 1);
+	restofline = calloc(sizeof(char) * (ft_strlen(rst) - i) + 1, sizeof(char));
 	if (rst[i] != '\0')
 		i++;
 	while (rst[i])
@@ -108,17 +108,17 @@ char	*get_next_line(int fd)
 	rst = rst_joiner(rst);
 	return (buff);
 }
-int main(void)
-{
-	int fd;
+// int main(void)
+// {
+// 	int fd;
 
-	fd = open("ult.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-}
+// 	fd = open("ult.txt", O_RDONLY);
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// }
