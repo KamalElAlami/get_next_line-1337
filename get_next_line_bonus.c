@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:42:22 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/19 01:16:30 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/19 01:17:35 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_reader(int fd, char *rst)
 {
@@ -95,16 +95,16 @@ char	*rst_joiner(char *rst)
 char	*get_next_line(int fd)
 {
 	char		*buff;
-	static char	*rst;
+	static char	*rst[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	rst = ft_reader(fd, rst);
-	if (!rst || !*rst)
-		return (free(rst), rst = NULL, NULL);
-	buff = line_stack(rst);
+	rst[fd] = ft_reader(fd, rst[fd]);
+	if (!rst[fd] || !*(rst[fd]))
+		return (free(rst[fd]), rst[fd] = NULL, NULL);
+	buff = line_stack(rst[fd]);
 	if (!buff)
 		return (NULL);
-	rst = rst_joiner(rst);
+	rst[fd] = rst_joiner(rst[fd]);
 	return (buff);
 }
